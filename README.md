@@ -327,29 +327,30 @@ The address I want to track is separated by a space from the *alias* that I want
 In this manner, [Home Assistant](https://www.home-assistant.io) receives mqtt messages and stores the values as input to a number of [mqtt sensors](https://www.home-assistant.io/components/sensor.mqtt/). Output from these sensors is combined to give an accurate numerical occupancy confidence:
 
 ```
-- platform: mqtt
-  state_topic: 'monitor/first floor/alias'
-  value_template: '{{ value_json.confidence }}'
-  unit_of_measurement: '%'
-  name: 'First Floor'
+mqtt:
+- sensor
+      state_topic: 'monitor/first floor/alias'
+      value_template: '{{ value_json.confidence }}'
+      unit_of_measurement: '%'
+      name: 'First Floor'
 
-- platform: mqtt
-  state_topic: 'monitor/second floor/alias'
-  value_template: '{{ value_json.confidence }}'
-  unit_of_measurement: '%'
-  name: 'Second Floor'
+- sensor: 
+      state_topic: 'monitor/second floor/alias'
+      value_template: '{{ value_json.confidence }}'
+      unit_of_measurement: '%'
+      name: 'Second Floor'
 
-- platform: mqtt
-  state_topic: 'monitor/third floor/alias'
-  value_template: '{{ value_json.confidence }}'
-  unit_of_measurement: '%'
-  name: 'Third Floor'
+- sensor:
+      state_topic: 'monitor/third floor/alias'
+      value_template: '{{ value_json.confidence }}'
+      unit_of_measurement: '%'
+      name: 'Third Floor'
 
-- platform: mqtt
-  state_topic: 'monitor/garage/alias'
-  value_template: '{{ value_json.confidence }}'
-  unit_of_measurement: '%'
-  name: 'Garage'
+- sensor:
+      state_topic: 'monitor/garage/alias'
+      value_template: '{{ value_json.confidence }}'
+      unit_of_measurement: '%'
+      name: 'Garage'
 ```
 
 These sensors can be combined using a [min_max](https://www.home-assistant.io/components/sensor.min_max/):
